@@ -1,0 +1,19 @@
+name: build-cmake
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: check
+        uses: actions/checkout@v2
+      - name: configure
+        run: cmake -B_build
+      - name: build
+        run: cmake --build _build --config Release
